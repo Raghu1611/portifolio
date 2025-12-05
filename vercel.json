@@ -1,6 +1,10 @@
 {
     "rewrites": [
         {
+            "source": "/api/proxy-send",
+            "destination": "https://mailservice-nine.vercel.app/api/send"
+        },
+        {
             "source": "/api/(.*)",
             "destination": "/api/$1"
         },

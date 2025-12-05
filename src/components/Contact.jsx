@@ -20,7 +20,7 @@ const Contact = () => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'x-api-key': 'vedjsjssdjkjjnsddjsksdbssdflsfmbjm'
+                    'x-api-key': import.meta.env.VITE_API_KEY
                 },
                 body: JSON.stringify({
                     to: "2200032009cseh@gmail.com",
