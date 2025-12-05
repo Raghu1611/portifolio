@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-scroll';
+import { Link as RouterLink } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 
@@ -52,13 +53,12 @@ const Navbar = () => {
                                     {link.name}
                                 </Link>
                             ))}
-                            <a
-                                href="/resume.pdf"
-                                download
+                            <RouterLink
+                                to="/resume"
                                 className="px-4 py-2 rounded-full bg-white text-black text-sm font-medium hover:bg-gray-200 transition-colors"
                             >
                                 Resume
-                            </a>
+                            </RouterLink>
                         </div>
                     </div>
 
@@ -94,13 +94,12 @@ const Navbar = () => {
                                     {link.name}
                                 </Link>
                             ))}
-                            <a
-                                href="/resume.pdf"
-                                download
+                            <RouterLink
+                                to="/resume"
                                 className="block w-full text-center mt-4 px-4 py-2 rounded-full bg-white text-black text-base font-medium hover:bg-gray-200 transition-colors"
                             >
-                                Download Resume
-                            </a>
+                                View Resume
+                            </RouterLink>
                         </div>
                     </motion.div>
                 )}

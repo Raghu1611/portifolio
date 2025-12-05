@@ -11,7 +11,7 @@ const Footer = () => {
 
                 <div className="flex items-center gap-6">
                     <a href="https://github.com/Raghu1611" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-white transition-colors text-sm">GitHub</a>
-                    <a href="#" className="text-gray-500 hover:text-white transition-colors text-sm">LinkedIn</a>
+                    <a href="https://www.linkedin.com/in/gonuguntla-dhanunjai-raghu-ram-62b957289" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-white transition-colors text-sm">LinkedIn</a>
                     <a href="mailto:2200032009cseh@gmail.com" className="text-gray-500 hover:text-white transition-colors text-sm">Email</a>
                 </div>
             </div>

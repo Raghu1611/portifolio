@@ -15,25 +15,38 @@ const Contact = () => {
         setStatus('sending');
 
         try {
-            const response = await fetch('/api/contact', {
+            // Using the proxy endpoint defined in vite.config.js to avoid CORS issues
+            const response = await fetch('/api/proxy-send', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-api-key': 'vedjsjssdjkjjnsddjsksdbssdflsfmbjm'
+                },
+                body: JSON.stringify({
+                    to: "2200032009cseh@gmail.com",
+                    subject: `Portfolio Contact from ${formData.name}`,
+                    text: `Name: ${formData.name}\nEmail: ${formData.email}\nMessage: ${formData.message}`,
+                    name: formData.name,
+                    email: formData.email,
+                    message: formData.message
+                })
             });
 
             if (response.ok) {
                 setStatus('success');
                 setFormData({ name: '', email: '', message: '' });
+                setTimeout(() => setStatus(''), 3000);
             } else {
-                throw new Error('Failed to send');
+                const errorData = await response.text();
+                console.error('Server Error:', response.status, errorData);
+                throw new Error(errorData || 'Failed to send');
             }
         } catch (error) {
             console.error('Error sending message:', error);
-            // Fallback simulation for demo purposes
-            setTimeout(() => {
-                setStatus('success');
-                setFormData({ name: '', email: '', message: '' });
-            }, 1500);
+            setStatus('error');
+            // Store the error message in a separate state if you want to show it, 
+            // for now we just show the generic error status but log the real one.
+            setTimeout(() => setStatus(''), 3000);
         }
     };
 
@@ -65,10 +78,10 @@ const Contact = () => {
                             </a>
 
                             <div className="flex gap-4 pt-4">
-                                <a href="#" className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-gray-300 hover:bg-primary hover:text-white transition-all">
+                                <a href="https://github.com/Raghu1611" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-gray-300 hover:bg-primary hover:text-white transition-all">
                                     <Github size={24} />
                                 </a>
-                                <a href="#" className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-gray-300 hover:bg-primary hover:text-white transition-all">
+                                <a href="https://www.linkedin.com/in/gonuguntla-dhanunjai-raghu-ram-62b957289" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-gray-300 hover:bg-primary hover:text-white transition-all">
                                     <Linkedin size={24} />
                                 </a>
                             </div>
@@ -81,6 +94,7 @@ const Contact = () => {
                             <input
                                 type="text"
                                 id="name"
+                                name="user_name"
                                 value={formData.name}
                                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                 required
@@ -94,6 +108,7 @@ const Contact = () => {
                             <input
                                 type="email"
                                 id="email"
+                                name="user_email"
                                 value={formData.email}
                                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                 required
@@ -106,6 +121,7 @@ const Contact = () => {
                             <label htmlFor="message" className="block text-sm font-medium text-gray-400 mb-2">Message</label>
                             <textarea
                                 id="message"
+                                name="message"
                                 value={formData.message}
                                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                                 required
@@ -129,6 +145,9 @@ const Contact = () => {
 
                         {status === 'success' && (
                             <p className="text-green-400 text-center">Message sent successfully!</p>
+                        )}
+                        {status === 'error' && (
+                            <p className="text-red-400 text-center">Failed to send message. Please try again.</p>
                         )}
                     </form>
                 </motion.div>

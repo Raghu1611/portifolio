@@ -4,16 +4,16 @@ import { motion } from 'framer-motion';
 const Skills = () => {
     const skillCategories = [
         {
-            title: "Frontend",
-            skills: ["React 18", "Vite", "Tailwind CSS", "Framer Motion", "Redux/Context API"]
+            title: "Languages",
+            skills: ["C", "Java", "JavaScript"]
         },
         {
-            title: "Backend",
-            skills: ["Node.js", "Express.js", "REST API", "JWT Auth", "Socket.IO"]
+            title: "Web Development",
+            skills: ["MERN Stack", "React 18", "Node.js", "Express.js", "Tailwind CSS"]
         },
         {
             title: "Database",
-            skills: ["MongoDB", "Mongoose", "MongoDB Atlas"]
+            skills: ["MongoDB", "MySQL", "Mongoose", "MongoDB Atlas"]
         },
         {
             title: "Tools / DevOps",

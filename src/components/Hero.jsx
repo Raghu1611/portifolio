@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-scroll';
+import { Link as RouterLink } from 'react-router-dom';
 import { ArrowRight, Download, Mail } from 'lucide-react';
 
 const Hero = () => {
@@ -78,14 +79,13 @@ const Hero = () => {
                             <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                         </Link>
 
-                        <a
-                            href="/resume.pdf"
-                            download
+                        <RouterLink
+                            to="/resume"
                             className="px-8 py-3 rounded-full border border-white/20 hover:bg-white/10 transition-all flex items-center gap-2"
                         >
                             <Download size={18} />
-                            Download Resume
-                        </a>
+                            View Resume
+                        </RouterLink>
 
                         <Link
                             to="contact"
